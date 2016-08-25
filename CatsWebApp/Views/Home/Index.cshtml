@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts{
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/service.js"></script>
+    <script src="~/Scripts/Controllers/catsWebAppController.js"></script>
+}
+
+<div class="jumbotron">
+    <h1>CatsWeb Application</h1>
+    <p class="lead">Is a coding demo by Mukesh Bhakta in ASP.NET MVC using AngularJS to demonstrate the effective use of JSON deserialization and LINQ.</p>
+</div>
+
+<div ng-app="catsWebApp" class="row">
+    <div class="col-md-4" ng-controller="catsWebAppController">
+        <div ng-if="data.HasError">
+            <p>
+                <h3>{{data.ErrorMessage}}</h3>
+            </p>
+        </div>
+        <div ng-if="!data.HasError">
+            <table class="datas">
+                <tr ng-repeat="d in data.Data">
+                    <td>
+                        <h2>{{d.OwnerGender}}</h2>
+                        <div ng-if="d.PetNames.length == 0">
+                            <i>No pets listed</i>
+                        </div>
+                        <div ng-if="d.PetNames.length > 0">
+                            <table class="petnames">
+                                <tr ng-repeat="pets in d.PetNames">
+                                    <td><li>{{pets}}</li></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+ 
